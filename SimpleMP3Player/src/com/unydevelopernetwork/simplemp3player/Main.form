@@ -256,12 +256,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSlider" name="seekbar">
-          <Events>
-            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="seekbarStateChanged"/>
-            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="seekbarMouseDragged"/>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="seekbarMousePressed"/>
-            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="seekbarMouseReleased"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="viewMusicTitle">
           <Properties>
@@ -298,9 +292,6 @@
         <Component class="javax.swing.JSlider" name="volumeRocker">
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="volumeRockerStateChanged"/>
-            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="volumeRockerMouseDragged"/>
-            <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="volumeRockerMouseMoved"/>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="volumeRockerMousePressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="randomizerStatus">
@@ -363,7 +354,7 @@
                 <Property name="selectionMode" type="int" value="0"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listMusicMouseReleased"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listMusicMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

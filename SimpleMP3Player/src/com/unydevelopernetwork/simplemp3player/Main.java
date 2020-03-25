@@ -48,35 +48,28 @@ public class Main extends javax.swing.JFrame {
     private int ranges = 0; 
     private int randomization = 0;
     private int headache = 0;
-//    private double durating = 0;
-//    private int currentDurating = 0;
     private MediaLocator ml;
     
-    private static int detikX = 0;
-    private static int menitX = 0;
-    private static int jamX = 0;
     private static int currentTimers = 0;
-    private boolean running = true;
+    private final boolean running = true;
     
     private int playedTracks = 0;
-    private float range = 0;
     private float gain = 0;
     
     private Time resume;
     
-    private static String[] SongUri = new String[5000];
-    private static String[] SongFileName = new String[5000];
-    private static String[] SongTitle = new String[5000];
-    private static String[] SongArtist = new String[5000];
-    private static String[] SongComposer = new String[5000];
-    private static String[] SongGenre = new String[5000];
-    private static String[] SongAlbum = new String[5000];
-    private static String[] SongBits = new String[5000];
-    private static String[] SongTime = new String[5000];
-    private static Format input1 = new AudioFormat(AudioFormat.MPEGLAYER3);
-    private static Format input2 = new AudioFormat(AudioFormat.MPEG);
-    private static Format input3 = new AudioFormat(AudioFormat.MPEG_RTP);
-    private static Format output = new AudioFormat(AudioFormat.LINEAR);
+    private static final String[] SongUri = new String[5000];
+    private static final String[] SongFileName = new String[5000];
+    private static final String[] SongTitle = new String[5000];
+    private static final String[] SongArtist = new String[5000];
+    private static final String[] SongComposer = new String[5000];
+    private static final String[] SongGenre = new String[5000];
+    private static final String[] SongAlbum = new String[5000];
+    private static final String[] SongBits = new String[5000];
+    private static final String[] SongTime = new String[5000];
+    private static final Format input1 = new AudioFormat(AudioFormat.MPEGLAYER3);
+    private static final Format input2 = new AudioFormat(AudioFormat.MPEG);
+    private static final Format output = new AudioFormat(AudioFormat.LINEAR);
     private static Player player;
     private static Thread thread;
    
@@ -111,12 +104,6 @@ public class Main extends javax.swing.JFrame {
             out,
             PlugInManager.CODEC
         );
-//        PlugInManager.addPlugIn(
-//            "javazoom.jl.player.Player",
-//            formatIn,
-//            out,
-//            PlugInManager.CODEC
-//        );
     }
 
     @SuppressWarnings("unchecked")
@@ -187,25 +174,6 @@ public class Main extends javax.swing.JFrame {
         playStatus.setFont(new java.awt.Font("Arial", 0, 8)); // NOI18N
         playStatus.setText("BERHENTI");
 
-        seekbar.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                seekbarStateChanged(evt);
-            }
-        });
-        seekbar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                seekbarMouseDragged(evt);
-            }
-        });
-        seekbar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                seekbarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                seekbarMouseReleased(evt);
-            }
-        });
-
         viewMusicTitle.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         viewMusicTitle.setText("Judul: ");
 
@@ -221,19 +189,6 @@ public class Main extends javax.swing.JFrame {
         volumeRocker.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 volumeRockerStateChanged(evt);
-            }
-        });
-        volumeRocker.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                volumeRockerMouseDragged(evt);
-            }
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                volumeRockerMouseMoved(evt);
-            }
-        });
-        volumeRocker.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                volumeRockerMousePressed(evt);
             }
         });
 
@@ -310,8 +265,8 @@ public class Main extends javax.swing.JFrame {
         });
         listMusic.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listMusic.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                listMusicMouseReleased(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMusicMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(listMusic);
@@ -564,12 +519,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddMusicActionPerformed
 
-    private void listMusicMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMusicMouseReleased
-        setInformationDisplay(listMusic.getSelectedIndex());
-        btnRemoveMusic.setEnabled(true);
-        counterX = listMusic.getSelectedIndex();
-    }//GEN-LAST:event_listMusicMouseReleased
-
     private void btnRemoveMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveMusicActionPerformed
         int selectedIndex = listMusic.getSelectedIndex();
         if(player != null & playedTracks == selectedIndex){
@@ -635,36 +584,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSavePlaylistActionPerformed
 
-    private void seekbarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seekbarMousePressed
-        
-        
-    }//GEN-LAST:event_seekbarMousePressed
-
-    private void seekbarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seekbarMouseDragged
-        int alphaTimer = seekbar.getValue();
-        System.out.println(alphaTimer);
-        int alphaMinutes = alphaTimer % 60;
-        int alphaSeconds = (alphaTimer - alphaMinutes)/60;
-        
-        String viewAlphaMinutes = "";
-        String viewAlphaSeconds = "";
-        if(alphaMinutes < 10){
-            viewAlphaMinutes = "0" + alphaMinutes;
-        }
-        else{
-            viewAlphaMinutes = alphaMinutes + "";
-        }
-        
-        if(alphaSeconds < 10){
-            viewAlphaSeconds = "0" + alphaSeconds;
-        }
-        else{
-            viewAlphaSeconds = alphaSeconds + "";
-        }
-        
-        viewTimeLapsed.setText(viewAlphaSeconds + ":" + viewAlphaMinutes);
-    }//GEN-LAST:event_seekbarMouseDragged
-
     private void btnLoadPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadPlaylistActionPerformed
         String alphaLists = "";
         int returnVal = openList.showOpenDialog(jLabel2);
@@ -697,7 +616,7 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoadPlaylistActionPerformed
 
-    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+    private void playClicked(){
         if(enterPlay == 0){
             if(counter != 0){
                 playStatus.setText("MEMAINKAN: ");
@@ -728,6 +647,10 @@ public class Main extends javax.swing.JFrame {
                 thread.suspend();
             }
         }
+    }
+     
+    private void btnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayActionPerformed
+        playClicked();
     }//GEN-LAST:event_btnPlayActionPerformed
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
@@ -757,18 +680,6 @@ public class Main extends javax.swing.JFrame {
     private void btnPrevTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevTrackActionPerformed
         prevTrack();
     }//GEN-LAST:event_btnPrevTrackActionPerformed
-
-    private void volumeRockerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumeRockerMouseDragged
-        
-    }//GEN-LAST:event_volumeRockerMouseDragged
-
-    private void volumeRockerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumeRockerMousePressed
-        
-    }//GEN-LAST:event_volumeRockerMousePressed
-
-    private void volumeRockerMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumeRockerMouseMoved
-        
-    }//GEN-LAST:event_volumeRockerMouseMoved
 
     private void volumeRockerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_volumeRockerStateChanged
         gain = (float) volumeRocker.getValue();
@@ -806,32 +717,37 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoopActionPerformed
 
-    private void seekbarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_seekbarStateChanged
-        
-    }//GEN-LAST:event_seekbarStateChanged
-
-    private void seekbarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seekbarMouseReleased
-//        if(player != null){
-//            int preprocessed = seekbar.getValue();
-//            int modCD = preprocessed%10;
-//            int vvvCD = preprocessed/10;
-//            long mediaNanos;
-//            for(int nCD = 0; nCD <= vvvCD; nCD++){
-//                mediaNanos = (long)(player.getMediaTime().getNanoseconds() + (10 * 1000000000));
-//                player.stop();
-//                player.setMediaTime(new Time(mediaNanos));
-//                player.start();
-//            }
-//            mediaNanos = (long)(player.getMediaTime().getNanoseconds() + (modCD * 1000000000));
-//            player.stop();
-//            player.setMediaTime(new Time(mediaNanos));
-//            player.start();
-//        }
-    }//GEN-LAST:event_seekbarMouseReleased
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new About().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void listMusicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMusicMouseClicked
+        if(evt.getClickCount() == 1){
+            if(player != null){
+                btnRemoveMusic.setEnabled(true);
+            }
+            else{
+                setInformationDisplay(listMusic.getSelectedIndex());
+                btnRemoveMusic.setEnabled(true);
+                counterX = listMusic.getSelectedIndex();
+            }
+        }
+        else if(evt.getClickCount() == 2){
+            if(player != null){
+                fullstopTrack();
+                setInformationDisplay(listMusic.getSelectedIndex());
+                counterX = listMusic.getSelectedIndex();
+                btnRemoveMusic.setEnabled(true);
+                playClicked();
+            }
+            else{
+                setInformationDisplay(listMusic.getSelectedIndex());
+                btnRemoveMusic.setEnabled(true);
+                counterX = listMusic.getSelectedIndex();
+                playClicked();
+            }
+        }
+    }//GEN-LAST:event_listMusicMouseClicked
 
     private void volumeChanger(float ff){
         player.getGainControl().setLevel(ff/100);
@@ -855,7 +771,7 @@ public class Main extends javax.swing.JFrame {
         playStatus.setText("BERHENTI");
         player.stop();
         player = null;
-        loopPlay = 0;
+       loopPlay = 0;
         counterX = 0;
         viewTimeLapsed.setText("00:00");
         seekbar.setValue(loopPlay);
@@ -1160,8 +1076,6 @@ public class Main extends javax.swing.JFrame {
             setInformationDisplay(listMusic.getSelectedIndex());
         }
     }
-    
-    
     
     public static void main(String args[]) {
         try {
