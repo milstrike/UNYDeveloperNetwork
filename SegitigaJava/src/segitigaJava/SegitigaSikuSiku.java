@@ -3,6 +3,11 @@ package segitigaJava;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/*
+ * Author: Muhammad Irfan Luthfi
+ * github.com/milstrike
+ */
+
 public class SegitigaSikuSiku {
 
 	private static Scanner getInput() {
