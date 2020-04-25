@@ -21,7 +21,7 @@ public class JavaQueueString {
 		while(loopX == 0) {
 			System.out.print("Masukkan Data (dalam bentuk apapun): ");
 			Scanner alphaX = new Scanner(System.in);
-			alpha = alphaX.next();
+			alpha = alphaX.nextLine();
 			loopX = 1;
 		}
 		queue[counters] = alpha;
