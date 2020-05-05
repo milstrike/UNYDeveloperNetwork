@@ -78,6 +78,7 @@ public class JavaDiamond {
 		
 	public static void main(String[] args) {
 		String loopStatus = "y";
+		begin();
 		while(loopStatus.equalsIgnoreCase("y")) {
 			int height = getInput();
 			topTriangle(height);
