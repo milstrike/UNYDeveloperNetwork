@@ -27,8 +27,8 @@ public class JavaFibonacci {
 	}
 	
 	private static void generateFibonacci(int limit) {
-		int a = 1;
-		int b = 1;
+		long a = 0;
+		long b = 1;
 		int value = 0;
 		while(value < limit) {
 			if(value < limit) {
